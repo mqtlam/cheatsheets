@@ -10,10 +10,10 @@ XML
 <?xml version="1.0"?>
 <root>
     <child>
-      <subchild name="content">content</subchild>
+      <subchild name="first">some content</subchild>
     </child>
     <child>
-      <subchild name="more">more content</subchild>
+      <subchild name="second">more content</subchild>
     </child>
 </root>
 ```
@@ -21,7 +21,7 @@ XML
 ```python
 import untangle
 obj = untangle.parse('path/to/file.xml')
-obj.root.child[0].subchild['name'] # => "content"
+obj.root.child[0].subchild['name'] # => "first"
 obj.root.child[1].subchild.cdata # => "more content"
 ```
 
