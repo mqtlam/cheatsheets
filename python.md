@@ -45,6 +45,8 @@ draw2.polygon([(x1, y1), (x2, y2), (x3, y3)], outline='RGB(255,255,0)')
 img2.save('output2.png')
 ```
 
+http://effbot.org/imagingbook/imagedraw.htm
+
 XML
 ---
 
