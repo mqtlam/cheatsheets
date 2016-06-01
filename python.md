@@ -1,8 +1,31 @@
 Python
 ======
 
+built-in: zip
+-------------
+
+Aggregate elements from each iterable:
+
+```python
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+
+# zip
+list_zip = zip(list1, list)
+print(list_zip) # => [(1, 4), (2, 5), (3, 6)]
+
+# unzip
+list1_unzip, list2_unzip = zip(*list_zip)
+print(list1_unzip) # => [1, 2, 3]
+print(list2_unzip) # => [4, 5, 6]
+```
+
 PIL
 ---
+
+```bash
+pip install Pillow
+```
 
 http://pillow.readthedocs.io/en/3.2.x/reference/Image.html
 
@@ -51,6 +74,10 @@ XML
 ---
 
 `untangle` module:
+
+```bash
+pip install untangle
+```
 
 ```xml
 <?xml version="1.0"?>
