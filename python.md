@@ -72,3 +72,27 @@ obj.root.child[1].subchild.cdata # => "more content"
 ```
 
 http://docs.python-guide.org/en/latest/scenarios/xml/
+
+JSON
+----
+
+https://docs.python.org/2/library/json.html
+
+```python
+try:
+    import simplejson as json
+except ImportError:
+    import json
+
+# load JSON file
+with open('input.json', 'r') as f:
+    data = json.load(f)
+
+# write to file: compact encoding
+with open('compact.json', 'w') as f:
+    json.dump(data, f, separators=(',',':'))
+
+# write to file: pretty printing
+with open('pretty.json', 'w') as f:
+    json.dump(data, f, sort_keys=True, indent=4, separators=(',', ': '))
+```
