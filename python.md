@@ -11,7 +11,7 @@ list1 = [1, 2, 3]
 list2 = [4, 5, 6]
 
 # zip
-list_zip = zip(list1, list)
+list_zip = zip(list1, list2)
 print(list_zip) # => [(1, 4), (2, 5), (3, 6)]
 
 # unzip
