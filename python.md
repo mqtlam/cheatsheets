@@ -4,7 +4,7 @@ Python
 argparse
 --------
 
-Parse command line arguments.
+Parse command line arguments:
 
 ```bash
 python myprogram.py foo 42 --arg3 bar
@@ -32,7 +32,7 @@ Can change delimiter and quoting options: https://docs.python.org/2/library/csv.
 
 ```csv
 field1    field2    field3
-foo       ba'r       ba"z
+foo       ba'r      ba"z
 ...
 ```
 
@@ -44,6 +44,79 @@ with open('file.csv', 'r') as f:
     for row in reader:
         print row # => ('field1', 'field2', 'field3'), ('foo', "ba'r", 'ba"z'), ...
 ```
+
+file paths
+----------
+
+Parse file paths:
+
+```python
+import os
+import shutil
+
+# construct file path string
+print os.path.join('/path', 'to', 'file.ext') # => '/path/to/file.ext'
+
+# get file name and/or directory from path
+print os.path.basename('/path/to/file.ext') # => 'file.ext'
+
+print os.path.dirname('/path/to/file.ext') # => '/path/to'
+
+(dirname, basename) = os.path.split('/path/to/file.ext')
+print (dirname, basename) # => ('/path/to', 'file.ext')
+
+# get file name extension
+(root, ext) = os.path.splitext('file.ext')
+print (root, ext) # => ('file', '.ext')
+(root, ext) = os.path.splitext('/path/to/file.ext')
+print (root, ext) # => ('/path/to/file', '.ext')
+(root, ext) = os.path.splitext('file')
+print (root, ext) # => ('file', '')
+```
+
+https://docs.python.org/2/library/os.path.html
+
+file system
+-----------
+
+* Check path exists.
+* Copy/move files.
+* Get files in a directory.
+
+```python
+import glob
+import os
+import shutil
+
+# check path exists
+os.path.exists('/path/to/file.ext')
+os.path.exists('/path/to/dir')
+
+# check if file exists
+os.path.isfile('/path/to/file.ext')
+
+# check if directory exists
+os.path.isdir('/path/to/dir')
+
+# copy file
+shutil.copyfile('/path/to/original_file', '/path/to/copy_file')
+
+# move file
+shutil.move('/path/to/original_file', '/path/to/moved_file')
+
+# get all files in a folder
+files = glob('/path/to/dir/*')
+for f in files:
+    do_stuff(f)
+
+# get all images (png) in a folder
+files = glob('/path/to/dir/*.png')
+for f in files:
+    do_image_stuff(f)
+```
+
+* https://docs.python.org/2/library/os.path.html
+* https://docs.python.org/2/library/shutil.html
 
 JSON
 ----
