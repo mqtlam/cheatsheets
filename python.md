@@ -48,23 +48,30 @@ with open('file.csv', 'r') as f:
 file paths
 ----------
 
-Parse file paths:
-
 ```python
 import os
-import shutil
+```
 
-# construct file path string
+Construct paths:
+
+```python
 print os.path.join('/path', 'to', 'file.ext') # => '/path/to/file.ext'
+```
 
-# get file name and/or directory from path
+Get file name and/or directory from path:
+
+```python
 print os.path.basename('/path/to/file.ext') # => 'file.ext'
 
 print os.path.dirname('/path/to/file.ext') # => '/path/to'
 
 (dirname, basename) = os.path.split('/path/to/file.ext')
 print (dirname, basename) # => ('/path/to', 'file.ext')
+```
 
+Get file extension:
+
+```python
 # get file name extension
 (root, ext) = os.path.splitext('file.ext')
 print (root, ext) # => ('file', '.ext')
@@ -79,14 +86,10 @@ https://docs.python.org/2/library/os.path.html
 file system
 -----------
 
-* Check path exists.
-* Copy/move files.
-* Get files in a directory.
+Check path exists:
 
 ```python
-import glob
 import os
-import shutil
 
 # check path exists
 os.path.exists('/path/to/file.ext')
@@ -97,12 +100,24 @@ os.path.isfile('/path/to/file.ext')
 
 # check if directory exists
 os.path.isdir('/path/to/dir')
+```
+
+Copy/move files:
+
+```python
+import shutil
 
 # copy file
 shutil.copyfile('/path/to/original_file', '/path/to/copy_file')
 
 # move file
 shutil.move('/path/to/original_file', '/path/to/moved_file')
+```
+
+Get files in a directory:
+
+```python
+import glob
 
 # get all files in a folder
 files = glob('/path/to/dir/*')
