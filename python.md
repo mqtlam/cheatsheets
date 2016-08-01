@@ -1,24 +1,88 @@
 Python
 ======
 
-built-in: zip
--------------
+argparse
+--------
 
-Aggregate elements from each iterable:
+Parse command line arguments.
+
+```bash
+python myprogram.py foo 42 --arg3 bar
+```
 
 ```python
-list1 = [1, 2, 3]
-list2 = [4, 5, 6]
+import argparse
 
-# zip
-list_zip = zip(list1, list2)
-print(list_zip) # => [(1, 4), (2, 5), (3, 6)]
+parser = argparse.ArgumentParser(description='description of program')
+parser.add('arg1', help='required string positional argument 1')
+parser.add('arg2', type=int, help='required integer positional argument 2')
+parser.add('--arg3', help='optional argument')
+args = parser.parse_args()
 
-# unzip
-list1_unzip, list2_unzip = zip(*list_zip)
-print(list1_unzip) # => [1, 2, 3]
-print(list2_unzip) # => [4, 5, 6]
+print args.arg1 # => foo
+print args.arg2 # => 42
+if not args.arg3:
+    print args.arg3 # => bar
 ```
+
+CSV
+---
+
+Can change delimiter and quoting options: https://docs.python.org/2/library/csv.html
+
+```csv
+field1    field2    field3
+foo       ba'r       ba"z
+...
+```
+
+```python
+import csv
+
+with open('file.csv', 'r') as f:
+    reader = csv.reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
+    for row in reader:
+        print row # => ('field1', 'field2', 'field3'), ('foo', "ba'r", 'ba"z'), ...
+```
+
+JSON
+----
+
+https://docs.python.org/2/library/json.html
+
+```python
+try:
+    import simplejson as json
+except ImportError:
+    import json
+
+# load JSON file
+with open('input.json', 'r') as f:
+    data = json.load(f)
+
+# write to file: compact encoding
+with open('compact.json', 'w') as f:
+    json.dump(data, f, separators=(',',':'))
+
+# write to file: pretty printing
+with open('pretty.json', 'w') as f:
+    json.dump(data, f, sort_keys=True, indent=4, separators=(',', ': '))
+```
+
+\_\_main\_\_
+------------
+
+```python
+def do_stuff():
+    pass
+
+if __name__ == "__main__":
+    do_stuff()
+```
+
+> One of the reasons for doing this is that sometimes you write a module (a .py file) where it can be executed directly. Alternatively, it can also be imported and used in another module. By doing the main check, you can have that code only execute when you want to run the module as a program and not have it execute when someone just wants to import your module and call your functions themselves.
+
+http://stackoverflow.com/questions/419163/what-does-if-name-main-do
 
 PIL
 ---
@@ -100,26 +164,21 @@ obj.root.child[1].subchild.cdata # => "more content"
 
 http://docs.python-guide.org/en/latest/scenarios/xml/
 
-JSON
-----
+zip
+---
 
-https://docs.python.org/2/library/json.html
+Aggregate elements from each iterable:
 
 ```python
-try:
-    import simplejson as json
-except ImportError:
-    import json
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
 
-# load JSON file
-with open('input.json', 'r') as f:
-    data = json.load(f)
+# zip
+list_zip = zip(list1, list2)
+print(list_zip) # => [(1, 4), (2, 5), (3, 6)]
 
-# write to file: compact encoding
-with open('compact.json', 'w') as f:
-    json.dump(data, f, separators=(',',':'))
-
-# write to file: pretty printing
-with open('pretty.json', 'w') as f:
-    json.dump(data, f, sort_keys=True, indent=4, separators=(',', ': '))
+# unzip
+list1_unzip, list2_unzip = zip(*list_zip)
+print(list1_unzip) # => [1, 2, 3]
+print(list2_unzip) # => [4, 5, 6]
 ```
