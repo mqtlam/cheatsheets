@@ -14,15 +14,17 @@ python myprogram.py foo 42 --arg3 bar
 import argparse
 
 parser = argparse.ArgumentParser(description='description of program')
-parser.add('arg1', help='required string positional argument 1')
-parser.add('arg2', type=int, help='required integer positional argument 2')
-parser.add('--arg3', help='optional argument')
+parser.add_argument('arg1', type=str, help='required string positional argument 1')
+parser.add_argument('arg2', type=int, help='required integer positional argument 2')
+parser.add_argument('--arg3', type=str, help='optional argument')
+parser.add_argument('--arg4', type=float, default=3.14, help='optional argument with default')
 args = parser.parse_args()
 
 print args.arg1 # => foo
 print args.arg2 # => 42
-if not args.arg3:
+if args.arg3:
     print args.arg3 # => bar
+print args.arg4 # => 3.14
 ```
 
 CSV
