@@ -94,3 +94,12 @@ Delete v1.0 tag:
 git tag -d v1.0
 git push origin :v1.0
 ```
+
+Undo Push
+---------
+
+You need to make sure that no other users of this repository are fetching the incorrect changes or trying to build on top of the commits that you want removed because you are about to rewind history. Then you need to 'force' push the old reference:
+
+```bash
+git push -f origin last_known_good_commit:branch_name
+```

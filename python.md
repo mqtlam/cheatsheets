@@ -159,6 +159,31 @@ with open('pretty.json', 'w') as f:
     json.dump(data, f, sort_keys=True, indent=4, separators=(',', ': '))
 ```
 
+keyword-only arguments
+----------------------
+
+In Python 2:
+
+```python
+def save_division(number, divisor, **kwargs):
+    # optional keyword args:
+    ignore_overflow = kwargs.pop('ignore_overflow', False) # defaults to False
+    ignore_zero_div = kwargs.pop('ignore_zero_division', False) # defaults to False
+
+    # if extra optional keyword args specified, raise error
+    if kwargs:
+        raise TypeError('Unexpected **kwargs: %r' % kwargs)
+
+    # ...function body...
+```
+
+In Python 3:
+
+```python
+def save_division(number, divisor, *, ignore_overflow=False, ignore_zero_division=False):
+    # ...function body...
+```
+
 \_\_main\_\_
 ------------
 
@@ -173,6 +198,32 @@ if __name__ == "__main__":
 > One of the reasons for doing this is that sometimes you write a module (a .py file) where it can be executed directly. Alternatively, it can also be imported and used in another module. By doing the main check, you can have that code only execute when you want to run the module as a program and not have it execute when someone just wants to import your module and call your functions themselves.
 
 http://stackoverflow.com/questions/419163/what-does-if-name-main-do
+
+matplotlib
+----------
+
+Plot a basic graph and save to file in a console without popping up windows:
+
+```python
+# import statements to work in the console
+import matplotlib as mpl
+mpl.use('Agg')
+import matplotlib.pyplot as plt
+
+# data here...
+x = ...
+y = ...
+
+# plot
+plt.plot(x, y, color='blue', linewidth=2.5, linestyle='-')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.title('Training Loss')
+
+# save figure
+plt.savefig(output_file, dpi=72)
+plt.clf()
+```
 
 PIL
 ---
