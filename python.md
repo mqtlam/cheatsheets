@@ -253,6 +253,7 @@ Resizing and cropping images:
 from PIL import Image
 
 img = Image.open('input.png')
+width, height = img.size
 img_resized = img.resize((width, height), Image.ANTIALIAS)
 img_cropped = img.crop((left, upper, right, lower))
 ```
