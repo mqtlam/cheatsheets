@@ -22,6 +22,16 @@ Remove remote:
 git remote rm remote_name
 ```
 
+Add local and remote branch:
+
+```bash
+# add local branch
+git branch branch_name
+# add (update) remote branch
+git push origin branch_name
+# git push origin local_branch:remote_branch
+```
+
 Delete local and remote branch:
 
 ```bash
