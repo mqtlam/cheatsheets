@@ -241,6 +241,8 @@ plt.clf()
 parallelism
 -----------
 
+Embarassingly parallelism:
+
 ```bash
 pip install joblib
 ```
@@ -252,13 +254,17 @@ import multiprocessing
 # what are your inputs, and what operation do you want to 
 # perform on each input. For example...
 inputs = range(10) 
-def processInput(i):
+def process_input(i):
 	return i * i
 
 num_cores = multiprocessing.cpu_count()
     
-results = Parallel(n_jobs=num_cores)(delayed(processInput)(i) for i in inputs)
+results = Parallel(n_jobs=num_cores)(delayed(process_input)(i) for i in inputs)
 ```
+
+Result:
+
+`results = [1, 4, 9, ...]`
 
 PIL
 ---
