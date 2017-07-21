@@ -222,6 +222,8 @@ Plot a basic graph and save to file in a console without popping up windows:
 # import statements to work in the console
 import matplotlib as mpl
 mpl.use('Agg')
+
+# usual import statement
 import matplotlib.pyplot as plt
 
 # data here...
