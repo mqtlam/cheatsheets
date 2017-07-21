@@ -1,6 +1,19 @@
 Python
 ======
 
+* [argparse](#argparse)
+* [CSV](#csv)
+* [file paths](#file-paths)
+* [file system](#file-system)
+* [JSON](#json)
+* [keyword-only arguments](#keyword-only-arguments)
+* [__main__](#__main__)
+* [matplotlib](#matplotlib)
+* [parallelism](#parallelism)
+* [PIL](#pil)
+* [XML](#xml)
+* [zip](#zip)
+
 argparse
 --------
 
@@ -225,7 +238,7 @@ plt.savefig(output_file, dpi=72)
 plt.clf()
 ```
 
-Parallelism
+parallelism
 -----------
 
 ```bash
