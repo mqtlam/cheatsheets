@@ -9,6 +9,7 @@ Python
 * [keyword-only arguments](#keyword-only-arguments)
 * [__main__](#__main__)
 * [matplotlib](#matplotlib)
+* [OpenCV](#opencv)
 * [parallelism](#parallelism)
 * [PIL](#pil)
 * [XML](#xml)
@@ -238,6 +239,55 @@ plt.savefig(output_file, dpi=72)
 plt.clf()
 ```
 
+OpenCV
+------
+
+```python
+import cv2
+```
+
+https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_tutorials.html
+
+Loading and saving images:
+
+```python
+import cv2
+
+img = cv2.imread('input.jpg', cv2.IMREAD_COLOR) # IMREAD_COLOR|IMREAD_GRAYSCALE|IMREAD_UNCHANGED
+cv2.imwrite('output.jpg', img)
+```
+
+Resizing and cropping images:
+
+```import cv2
+img = cv2.imread('input.jpg', cv2.IMREAD_COLOR)
+width, height, channels = img.shape
+img_resized = cv2.resize(img, (width, height))
+img_cropped = img[0:height, 0:width]
+```
+
+Drawing bounding box/polygon on an image:
+
+```python
+import cv2
+import numpy as np
+
+img = cv2.imread('input.jpg', cv2.IMREAD_COLOR)
+YELLOW = (0, 255, 255) # BGR
+is_closed = True
+thickness = 1
+
+img1 = img.copy()
+img1 = cv2.rectangle(img1, (x1,y1), (x2,y2), YELLOW, thickness)
+img1.save('output1.png')
+
+img2 = img.copy()
+pts = np.array([[x1,y1], [x2,y2], ..., [xn, yn]], np.int32)
+pts = pts.reshape((-1, 1, 2))
+img2 = cv2.polylines(img2, [pts], is_closed, YELLOW)
+img2.save('output2.png')
+```
+
 parallelism
 -----------
 
@@ -304,7 +354,9 @@ Drawing bounding box/polygon on an image:
 ```python
 from PIL import Image, ImageDraw
 
-img1 = Image.open('input.png')
+img = Image.open('input.png')
+
+img1 = img.copy()
 draw1 = ImageDraw.Draw(img1)
 draw1.rectangle([(x1, y1), (x2, y2)], outline='yellow')
 img1.save('output1.png')
