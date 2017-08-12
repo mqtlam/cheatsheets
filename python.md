@@ -281,13 +281,13 @@ thickness = 1
 
 img1 = img.copy()
 img1 = cv2.rectangle(img1, (x1,y1), (x2,y2), YELLOW, thickness)
-img1.save('output1.png')
+cv2.imwrite('output1.jpg', img1)
 
 img2 = img.copy()
 pts = np.array([[x1,y1], [x2,y2], ..., [xn, yn]], np.int32)
 pts = pts.reshape((-1, 1, 2))
 img2 = cv2.polylines(img2, [pts], is_closed, YELLOW)
-img2.save('output2.png')
+cv2.imwrite('output2.jpg', img2)
 ```
 
 parallelism
@@ -363,7 +363,7 @@ draw1 = ImageDraw.Draw(img1)
 draw1.rectangle([(x1, y1), (x2, y2)], outline='yellow')
 img1.save('output1.png')
 
-img2 = img1.copy()
+img2 = img.copy()
 draw2 = ImageDraw.Draw(img2)
 draw2.polygon([(x1, y1), (x2, y2), (x3, y3)], outline='RGB(255,255,0)')
 img2.save('output2.png')
